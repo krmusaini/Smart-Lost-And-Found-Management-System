@@ -1,0 +1,32 @@
+{
+  "name": "smart-lost-found",
+  "version": "1.0.0",
+  "description": "Smart Student Lost & Found Management System - Semester 3 B.Tech CS DBMS Capstone Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "init-db": "node database/initDb.js",
+    "seed-db": "node database/seedDb.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "keywords": [
+    "lost-and-found",
+    "dbms",
+    "mysql",
+    "express",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}
