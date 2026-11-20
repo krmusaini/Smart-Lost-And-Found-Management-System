@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🛡️</div>
+        <span>Campus Lost & Found (Admin)</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/admin-dashboard.html" class="nav-link active">Admin Home</a></li>
+        <li><a href="/pages/manage-claims.html" class="nav-link">Claims Review</a></li>
+        <li><a href="/pages/handovers.html" class="nav-link">Handovers</a></li>
+        <li><a href="/pages/matches.html" class="nav-link">Smart Matches</a></li>
+        <li><a href="/pages/manage-items.html" class="nav-link">Items</a></li>
+        <li><a href="/pages/manage-users.html" class="nav-link">Users</a></li>
+        <li><a href="/pages/manage-categories.html" class="nav-link">Categories</a></li>
+        <li><a href="/pages/manage-locations.html" class="nav-link">Locations</a></li>
+        <li><a href="/pages/reports.html" class="nav-link">Analytics</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="admin-dashboard-root">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Administrative Operations Dashboard</h1>
+        <p class="page-subtitle">Centralized oversight of reports, claim verifications, transactional handovers, and database health.</p>
+      </div>
+      <div style="display: flex; gap: 0.5rem;">
+        <a href="/pages/manage-claims.html" class="btn btn-warning btn-sm">Review Pending Claims</a>
+        <a href="/pages/handovers.html" class="btn btn-primary btn-sm">Process Handover</a>
+      </div>
+    </div>
+
+    <!-- Administrative Statistics Grid (MySQL Functions & Aggregates) -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Registered Students</span>
+          <span class="stat-value" id="admin-stat-students">0</span>
+        </div>
+        <div class="stat-icon primary">👥</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Active Open Items</span>
+          <span class="stat-value" id="admin-stat-open">0</span>
+          <small style="color: var(--slate-400); font-size: 0.75rem;">From CountOpenItems()</small>
+        </div>
+        <div class="stat-icon info">📂</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Pending Claims</span>
+          <span class="stat-value" id="admin-stat-pending-claims" style="color: var(--warning);">0</span>
+          <small style="color: var(--slate-400); font-size: 0.75rem;">Requires verification</small>
+        </div>
+        <div class="stat-icon warning">⚖️</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Total Recoveries</span>
+          <span class="stat-value" id="admin-stat-recovered" style="color: var(--success);">0</span>
+          <small style="color: var(--slate-400); font-size: 0.75rem;">Verified handovers</small>
+        </div>
+        <div class="stat-icon success">🤝</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Recovery Rate</span>
+          <span class="stat-value" id="admin-stat-recovery-rate">0.0%</span>
+        </div>
+        <div class="stat-icon success">📈</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Lost vs Found</span>
+          <span class="stat-value" style="font-size: 1.4rem;">
+            <span id="admin-stat-lost">0</span>L / <span id="admin-stat-found">0</span>F
+          </span>
+        </div>
+        <div class="stat-icon primary">📊</div>
+      </div>
+    </div>
+
+    <!-- Admin Operations Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+      <!-- Category Distribution Card -->
+      <div class="card" style="margin-bottom: 0;">
+        <div class="card-header">
+          <h3 class="card-title">Category Distribution</h3>
+          <small style="color: var(--slate-400);">From GetCategoryItemCount()</small>
+        </div>
+        <div id="admin-category-distribution">
+          <div style="color: var(--slate-400); padding: 1rem 0;">Loading category counts...</div>
+        </div>
+      </div>
+
+      <!-- Recent Database Activity Card (Query 11: UNION ALL) -->
+      <div class="card" style="margin-bottom: 0;">
+        <div class="card-header">
+          <h3 class="card-title">Recent Database Audit Events</h3>
+          <span class="badge badge-open">Live UNION Feed</span>
+        </div>
+        <ul class="activity-feed" id="admin-recent-activity">
+          <li style="color: var(--slate-400); padding: 1rem 0;">Loading activity events...</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Navigation to Administration Modules -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Database & Management Modules</h3>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+        <a href="/pages/manage-claims.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">⚖️</div>
+          <div class="action-text">
+            <h4>Claims Review</h4>
+            <p>Approve or reject ownership claims</p>
+          </div>
+        </a>
+
+        <a href="/pages/handovers.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">🤝</div>
+          <div class="action-text">
+            <h4>Item Handover</h4>
+            <p>Execute transactional handovers</p>
+          </div>
+        </a>
+
+        <a href="/pages/matches.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">⚡</div>
+          <div class="action-text">
+            <h4>Smart Matches</h4>
+            <p>Run matching engine & verify matches</p>
+          </div>
+        </a>
+
+        <a href="/pages/manage-users.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">👥</div>
+          <div class="action-text">
+            <h4>Manage Users</h4>
+            <p>View students, roles, recovery counts</p>
+          </div>
+        </a>
+
+        <a href="/pages/manage-categories.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">📁</div>
+          <div class="action-text">
+            <h4>Categories</h4>
+            <p>Maintain standard campus categories</p>
+          </div>
+        </a>
+
+        <a href="/pages/manage-locations.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">📍</div>
+          <div class="action-text">
+            <h4>Locations</h4>
+            <p>Maintain campus buildings & rooms</p>
+          </div>
+        </a>
+
+        <a href="/pages/reports.html" class="action-card" style="margin-bottom: 0;">
+          <div class="action-icon">📊</div>
+          <div class="action-text">
+            <h4>SQL Analytics</h4>
+            <p>CTEs, Window functions & monthly reports</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

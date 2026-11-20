@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Student Lost & Found Management System</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/index.html" class="nav-link active">Home</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link">Browse Items</a></li>
+        <li class="student-only" style="display: none;"><a href="/pages/report-lost.html" class="nav-link">Report Lost</a></li>
+        <li class="student-only" style="display: none;"><a href="/pages/report-found.html" class="nav-link">Report Found</a></li>
+        <li class="student-only" style="display: none;"><a href="/student-dashboard.html" class="nav-link">Student Portal</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth">
+        <a href="/login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="main-content">
+    <section style="background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); color: #ffffff; border-radius: var(--radius-lg); padding: 3.5rem 2.5rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-md);">
+      <div style="max-width: 720px;">
+        <span style="background: rgba(255, 255, 255, 0.2); padding: 0.35rem 0.85rem; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">
+          Official University Platform
+        </span>
+        <h1 style="font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin: 1rem 0 1rem 0;">
+          Smart Student Lost & Found Management System
+        </h1>
+        <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.95; margin-bottom: 2rem;">
+          A centralized, secure relational DBMS portal for reporting misplaced campus belongings, discovering found belongings, tracking ownership claims, and managing verified handovers.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="/pages/browse-items.html" class="btn btn-lg" style="background: #ffffff; color: var(--primary); font-weight: 700;">
+            🔍 Search Found Items
+          </a>
+          <a href="/pages/report-lost.html" class="btn btn-lg" style="background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); font-weight: 600;">
+            📢 Report a Lost Item
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Highlights -->
+    <section style="margin-bottom: 3rem;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--slate-900);">Streamlined Campus Belonging Recovery</h2>
+        <p style="color: var(--slate-500); font-size: 1rem; margin-top: 0.25rem;">Powered by strict relational integrity, stored routines, and smart matching algorithms.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        <div class="card" style="margin-bottom: 0;">
+          <div class="stat-icon primary" style="margin-bottom: 1rem;">📝</div>
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">Direct Item Reporting</h3>
+          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.5;">
+            Students can report lost or found items with standardized categories, precise campus locations, dates, and optional photo uploads.
+          </p>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <div class="stat-icon info" style="margin-bottom: 1rem;">⚡</div>
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">Rule-Based Smart Matching</h3>
+          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.5;">
+            Automated MySQL matching evaluates category similarity, date proximity, location matches, and keywords to notify students of potential matches.
+          </p>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <div class="stat-icon warning" style="margin-bottom: 1rem;">🛡️</div>
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">Ownership Claims & Verification</h3>
+          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.5;">
+            Students establish ownership by providing private characteristics. Authorized administrators review and approve claims securely.
+          </p>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <div class="stat-icon success" style="margin-bottom: 1rem;">🤝</div>
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">Permanent Handover Records</h3>
+          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.5;">
+            Successful item return is tracked through transactional handovers, updating item state to CLAIMED with an audit trail.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Navigation Banner -->
+    <section class="card" style="background: #ffffff; border-left: 4px solid var(--primary); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--slate-900);">Are you a campus student or administrator?</h3>
+        <p style="font-size: 0.9rem; color: var(--slate-500); margin-top: 0.2rem;">Log in to access your personal reports, claims, and analytical dashboard.</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="/login.html" class="btn btn-secondary">Student / Admin Login</a>
+        <a href="/register.html" class="btn btn-primary">Student Registration</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • Semester 3 B.Tech CS DBMS Capstone</div>
+      <div style="color: var(--slate-400);">Relational Architecture: MySQL 8.0 & Express.js</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
