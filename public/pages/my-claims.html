@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Ownership Claims - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/student-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link">Browse Items</a></li>
+        <li><a href="/pages/report-lost.html" class="nav-link">Report Lost</a></li>
+        <li><a href="/pages/report-found.html" class="nav-link">Report Found</a></li>
+        <li><a href="/pages/my-reports.html" class="nav-link">My Reports</a></li>
+        <li><a href="/pages/my-claims.html" class="nav-link active">My Claims</a></li>
+        <li><a href="/pages/matches.html" class="nav-link">Smart Matches</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="my-claims-root">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">My Ownership Claims</h1>
+        <p class="page-subtitle">Track the status of claims you submitted for found campus items.</p>
+      </div>
+      <div>
+        <a href="/pages/browse-items.html?type=FOUND" class="btn btn-primary btn-sm">Find Items to Claim</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Target Item</th>
+              <th>Your Claim Message</th>
+              <th>Claim Date</th>
+              <th>Status</th>
+              <th>Administrator Remark / Handover</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="my-claims-list">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 2rem;">Loading your claims...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/claims.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Ownership Claim - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/student-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link">Browse Items</a></li>
+        <li><a href="/pages/my-claims.html" class="nav-link">My Claims</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Submit Ownership Claim</h1>
+        <p class="page-subtitle">Establish ownership by providing identifying characteristics. Calls Stored Procedure <code>SubmitClaim</code>.</p>
+      </div>
+      <div>
+        <a href="/pages/browse-items.html" class="btn btn-secondary btn-sm">← Back to Listings</a>
+      </div>
+    </div>
+
+    <div class="card" style="max-width: 750px; margin: 0 auto;">
+      <!-- Found Item Summary Preview -->
+      <div id="claim-item-preview">
+        <div style="text-align: center; padding: 1.5rem; color: var(--slate-400);">Loading item information...</div>
+      </div>
+
+      <form id="submit-claim-form">
+        <input type="hidden" id="claim-item-id-input" name="item_id" value="">
+
+        <div class="form-group">
+          <label class="form-label" for="claim-message">
+            Proof of Ownership & Identifying Characteristics <span class="required">*</span>
+          </label>
+          <textarea id="claim-message" name="claim_message" class="form-control" rows="6" placeholder="To verify that this item belongs to you, please describe details not visible in public listings, such as:&#10;• Wallpaper / lockscreen image on phones/laptops&#10;• Internal contents or items in specific pockets&#10;• Unique scratches, serial numbers or etchings&#10;• Brand, model number, or receipts" required></textarea>
+          <div class="form-text">
+            This verification information is only visible to campus security administrators. When a claim is registered, a MySQL trigger will transition the item status to <code>CLAIM_PENDING</code>.
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <a href="/pages/browse-items.html" class="btn btn-secondary">Cancel</a>
+          <button type="submit" id="submit-claim-btn" class="btn btn-primary btn-lg">
+            Submit Ownership Claim
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/claims.js"></script>
+</body>
+</html>

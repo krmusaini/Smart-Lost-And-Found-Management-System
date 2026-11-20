@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Details - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link">Browse Items</a></li>
+        <li class="student-only" style="display: none;"><a href="/student-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div id="item-details-root">
+      <div style="text-align: center; padding: 3rem; color: var(--slate-400);">Loading item details...</div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/items.js"></script>
+</body>
+</html>

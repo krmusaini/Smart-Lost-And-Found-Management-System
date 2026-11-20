@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Reports & Analytics - Admin Portal</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/admin-dashboard.html" class="nav-brand">
+        <div class="brand-icon">🛡️</div>
+        <span>Admin Portal</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/admin-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="/pages/manage-claims.html" class="nav-link">Claims Review</a></li>
+        <li><a href="/pages/handovers.html" class="nav-link">Handovers</a></li>
+        <li><a href="/pages/manage-items.html" class="nav-link">Items</a></li>
+        <li><a href="/pages/manage-users.html" class="nav-link">Users</a></li>
+        <li><a href="/pages/reports.html" class="nav-link active">Analytics</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="reports-root">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Advanced SQL Reports & DBMS Analytics</h1>
+        <p class="page-subtitle">Demonstration of CTEs, Window Functions, Subqueries, Stored Procedures, and Analytical Aggregations.</p>
+      </div>
+      <div>
+        <a href="/admin-dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+      </div>
+    </div>
+
+    <!-- Monthly Report Stored Procedure Filter -->
+    <div class="card" style="padding: 1.25rem;">
+      <form id="reports-filter-form" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+        <div>
+          <label class="form-label" for="report-year">Filter Year</label>
+          <input type="number" id="report-year" name="year" class="form-control" value="2026" min="2020" max="2030">
+        </div>
+        <div>
+          <label class="form-label" for="report-month">Filter Month</label>
+          <select id="report-month" name="month" class="form-control">
+            <option value="">All Months</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11" selected>November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Monthly Analytics</button>
+      </form>
+    </div>
+
+    <!-- Section 1: Monthly Trends (Query 8: Common Table Expression - CTE) -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">1. Monthly Reporting Trends</h3>
+          <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.2rem;">
+            Demonstrating: <code>WITH MonthlyReportCTE AS (...)</code> & Date Grouping
+          </p>
+        </div>
+        <span class="badge badge-open">CTE Analytical Query</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Month (YYYY-MM)</th>
+              <th>Lost Reports</th>
+              <th>Found Reports</th>
+              <th>Items Recovered</th>
+              <th>Total Volume</th>
+              <th>Recovery Rate (%)</th>
+            </tr>
+          </thead>
+          <tbody id="report-monthly-trends-body">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 2rem;">Loading monthly trend statistics...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2: Most Active Students (Query 9: Window Function DENSE_RANK) -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">2. Campus Engagement Leaderboard</h3>
+          <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.2rem;">
+            Demonstrating: Window Function <code>DENSE_RANK() OVER (ORDER BY ...)</code>
+          </p>
+        </div>
+        <span class="badge badge-claimed">Window Function</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Student Name</th>
+              <th>Email</th>
+              <th>Items Reported</th>
+              <th>Claims Submitted</th>
+              <th>Engagement Score</th>
+            </tr>
+          </thead>
+          <tbody id="report-active-students-body">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 2rem;">Loading student rankings...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 3: Category Recovery Breakdown (Query 5: GROUP BY & Conditional Aggregation) -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">3. Category Recovery Performance</h3>
+          <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.2rem;">
+            Demonstrating: <code>GROUP BY</code>, <code>SUM(CASE WHEN ...)</code>, and recovery percentage calculation
+          </p>
+        </div>
+        <span class="badge badge-pending">Aggregates</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Total Reports</th>
+              <th>Lost Count</th>
+              <th>Found Count</th>
+              <th>Recovered Count</th>
+              <th>Recovery Rate</th>
+            </tr>
+          </thead>
+          <tbody id="report-category-breakdown-body">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 2rem;">Loading category statistics...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 4: Unclaimed Found Items (Query 6: Subquery with NOT EXISTS) -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">4. Unclaimed Found Belongings</h3>
+          <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.2rem;">
+            Demonstrating: Correlated Subquery <code>NOT EXISTS (SELECT 1 FROM Claims cl WHERE cl.item_id = i.item_id)</code>
+          </p>
+        </div>
+        <span class="badge badge-open">Correlated Subquery</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Found Item Title</th>
+              <th>Category</th>
+              <th>Campus Location</th>
+              <th>Date Found</th>
+            </tr>
+          </thead>
+          <tbody id="report-unclaimed-items-body">
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 2rem;">Loading unclaimed items...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

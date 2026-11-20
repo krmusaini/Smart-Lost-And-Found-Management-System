@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Item Matches - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link">Browse Items</a></li>
+        <li class="student-only" style="display: none;"><a href="/student-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li class="student-only" style="display: none;"><a href="/pages/matches.html" class="nav-link active">Smart Matches</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        <li class="admin-only" style="display: none;"><a href="/pages/matches.html" class="nav-link active">Smart Matches</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="matches-root">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Smart Item Matching Engine</h1>
+        <p class="page-subtitle">Multi-criteria correlation comparing categories, locations, dates, and title/description keywords.</p>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <span id="matches-count-badge" class="badge badge-open">Scanning...</span>
+        <button id="trigger-matching-btn" class="btn btn-primary btn-sm admin-only" style="display: none;">
+          ⚡ Run Matching Engine
+        </button>
+      </div>
+    </div>
+
+    <!-- Student View Container -->
+    <div class="student-only" id="student-matches-container" style="display: none;">
+      <div style="text-align: center; padding: 2rem;">Loading smart matches...</div>
+    </div>
+
+    <!-- Admin View Container -->
+    <div class="admin-only card" style="display: none;">
+      <div class="card-header">
+        <h3 class="card-title">All System Smart Matches (ItemMatches Table)</h3>
+        <small style="color: var(--slate-500);">Generated via Stored Procedure <code>GenerateItemMatches()</code></small>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Match ID</th>
+              <th>Score / Status</th>
+              <th>Lost Item Report</th>
+              <th>Found Item Report</th>
+              <th>Date Detected</th>
+              <th>Admin Action</th>
+            </tr>
+          </thead>
+          <tbody id="admin-matches-table-body">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 2rem;">Loading system matches...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/matches.js"></script>
+</body>
+</html>

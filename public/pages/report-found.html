@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Found Item - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/student-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link">Browse Items</a></li>
+        <li><a href="/pages/report-lost.html" class="nav-link">Report Lost</a></li>
+        <li><a href="/pages/report-found.html" class="nav-link active">Report Found</a></li>
+        <li><a href="/pages/my-reports.html" class="nav-link">My Reports</a></li>
+        <li><a href="/pages/my-claims.html" class="nav-link">My Claims</a></li>
+        <li><a href="/pages/matches.html" class="nav-link">Smart Matches</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Report a Found Belonging</h1>
+        <p class="page-subtitle">Help reunite a lost item with its student owner. This calls Stored Procedure <code>SubmitItemReport</code>.</p>
+      </div>
+      <div>
+        <a href="/pages/browse-items.html?type=LOST" class="btn btn-secondary btn-sm">Check Existing Lost Reports First</a>
+      </div>
+    </div>
+
+    <div class="card" style="max-width: 800px; margin: 0 auto;">
+      <form id="report-item-form" enctype="multipart/form-data">
+        <input type="hidden" name="item_type" value="FOUND">
+
+        <div class="form-group">
+          <label class="form-label" for="item-title">Item Title / Summary <span class="required">*</span></label>
+          <input type="text" id="item-title" name="title" class="form-control" placeholder="e.g., Casio FX-991EX Calculator, College ID Card in Blue Lanyard" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label class="form-label" for="item-category-select">Standard Category <span class="required">*</span></label>
+              <select id="item-category-select" name="category_id" class="form-control category-dropdown" required>
+                <option value="">Select Category...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              <label class="form-label" for="item-location-select">Found Location <span class="required">*</span></label>
+              <select id="item-location-select" name="location_id" class="form-control location-dropdown" required>
+                <option value="">Select Campus Location...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label class="form-label" for="item-date">Date Found <span class="required">*</span></label>
+              <input type="date" id="item-date" name="item_date" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-col"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="item-description">General Description</label>
+          <textarea id="item-description" name="description" class="form-control" rows="4" placeholder="Provide general details. Tip: Leave out some private identifying characteristics so true owners can establish ownership via claim."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Photograph of the Found Item</label>
+          <label class="file-upload-box" for="item-image-input">
+            <div class="file-upload-icon">📷</div>
+            <div style="font-weight: 600; color: var(--slate-700);">Click to upload or drag an image here</div>
+            <div class="form-text">Supported formats: JPEG, PNG, WebP (Max 5MB)</div>
+            <input type="file" id="item-image-input" name="image" accept="image/*">
+          </label>
+          <div id="image-preview-container" class="preview-container" style="display: none;">
+            <img id="image-preview" class="preview-image" alt="Preview">
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <a href="/student-dashboard.html" class="btn btn-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary btn-lg">📦 Submit Found Report</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/items.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('item-date');
+      if (dateInput) {
+        dateInput.max = today;
+        dateInput.value = today;
+      }
+    });
+  </script>
+</body>
+</html>

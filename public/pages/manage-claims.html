@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Claims - Admin Portal</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/admin-dashboard.html" class="nav-brand">
+        <div class="brand-icon">🛡️</div>
+        <span>Admin Portal</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/admin-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="/pages/manage-claims.html" class="nav-link active">Claims Review</a></li>
+        <li><a href="/pages/handovers.html" class="nav-link">Handovers</a></li>
+        <li><a href="/pages/manage-items.html" class="nav-link">Items</a></li>
+        <li><a href="/pages/manage-users.html" class="nav-link">Users</a></li>
+        <li><a href="/pages/reports.html" class="nav-link">Analytics</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="admin-claims-root">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Ownership Claims Verification</h1>
+        <p class="page-subtitle">Review student ownership proofs. Approving executes Stored Procedure <code>ApproveClaim</code> within a transaction.</p>
+      </div>
+      <div>
+        <a href="/pages/handovers.html" class="btn btn-primary btn-sm">Go to Item Handovers →</a>
+      </div>
+    </div>
+
+    <!-- Filters Bar -->
+    <div class="card" style="padding: 1.25rem;">
+      <form id="admin-claims-filter-form" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 220px;">
+          <input type="text" name="search" class="form-control" placeholder="Search by item title, student name or email...">
+        </div>
+        <div style="width: 200px;">
+          <select name="status" class="form-control">
+            <option value="">All Claims</option>
+            <option value="PENDING" selected>Pending Review</option>
+            <option value="APPROVED">Approved</option>
+            <option value="REJECTED">Rejected</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter Claims</button>
+      </form>
+    </div>
+
+    <!-- Claims Table -->
+    <div class="card">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Found Item</th>
+              <th>Claimant Student</th>
+              <th>Proof / Description Provided</th>
+              <th>Submitted Date</th>
+              <th>Status</th>
+              <th>Verification Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-claims-table-body">
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2rem;">Loading claims for review...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/claims.js"></script>
+</body>
+</html>

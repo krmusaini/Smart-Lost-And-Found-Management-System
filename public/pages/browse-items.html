@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Items - Campus Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-icon">🎓</div>
+        <span>Campus Lost & Found</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/pages/browse-items.html" class="nav-link active">Browse Items</a></li>
+        <li class="student-only" style="display: none;"><a href="/student-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li class="student-only" style="display: none;"><a href="/pages/report-lost.html" class="nav-link">Report Lost</a></li>
+        <li class="student-only" style="display: none;"><a href="/pages/report-found.html" class="nav-link">Report Found</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Campus Lost & Found Directory</h1>
+        <p class="page-subtitle">Search, filter, and inspect reported belongings across campus.</p>
+      </div>
+      <div style="display: flex; gap: 0.5rem;">
+        <a href="/pages/report-lost.html" class="btn btn-danger btn-sm">📢 Report Lost</a>
+        <a href="/pages/report-found.html" class="btn btn-primary btn-sm">📦 Report Found</a>
+      </div>
+    </div>
+
+    <!-- Filter Bar Card -->
+    <div class="card" style="padding: 1.25rem;">
+      <form id="browse-filters-form">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: flex-end;">
+          <div>
+            <label class="form-label" for="filter-q">Keyword Search</label>
+            <input type="text" id="filter-q" name="q" class="form-control" placeholder="Search title or description...">
+          </div>
+
+          <div>
+            <label class="form-label" for="filter-type">Report Type</label>
+            <select id="filter-type" name="type" class="form-control">
+              <option value="">All (Lost & Found)</option>
+              <option value="LOST">Lost Belongings</option>
+              <option value="FOUND">Found Belongings</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="filter-cat">Category</label>
+            <select id="filter-cat" name="category_id" class="form-control category-dropdown">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="filter-loc">Location</label>
+            <select id="filter-loc" name="location_id" class="form-control location-dropdown">
+              <option value="">All Locations</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="filter-status">Status</label>
+            <select id="filter-status" name="status" class="form-control">
+              <option value="">Active (Open & Claim Pending)</option>
+              <option value="OPEN">Open Only</option>
+              <option value="CLAIM_PENDING">Claim Pending</option>
+              <option value="CLAIMED">Claimed / Recovered</option>
+              <option value="ALL">All Statuses</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="submit" class="btn btn-primary" style="flex: 1;">Search</button>
+            <button type="button" id="reset-filters-btn" class="btn btn-secondary">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Results Grid -->
+    <div class="items-grid" id="browse-items-grid"></div>
+
+    <!-- Pagination -->
+    <div id="browse-pagination"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/items.js"></script>
+  <script>
+    // Read type parameter from URL if provided (e.g. ?type=FOUND)
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const typeParam = params.get('type');
+      if (typeParam) {
+        const typeSelect = document.getElementById('filter-type');
+        if (typeSelect) typeSelect.value = typeParam.toUpperCase();
+      }
+    });
+  </script>
+</body>
+</html>

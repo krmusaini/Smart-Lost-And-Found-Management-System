@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Handovers - Admin Portal</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/admin-dashboard.html" class="nav-brand">
+        <div class="brand-icon">🛡️</div>
+        <span>Admin Portal</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/admin-dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="/pages/manage-claims.html" class="nav-link">Claims Review</a></li>
+        <li><a href="/pages/handovers.html" class="nav-link active">Handovers</a></li>
+        <li><a href="/pages/manage-items.html" class="nav-link">Items</a></li>
+        <li><a href="/pages/manage-users.html" class="nav-link">Users</a></li>
+        <li><a href="/pages/reports.html" class="nav-link">Analytics</a></li>
+      </ul>
+      <div id="nav-auth-section" class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="handovers-root">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Item Recovery & Handover Management</h1>
+        <p class="page-subtitle">Formally execute item handover upon physical verification. Executes Stored Procedure <code>RecordItemHandover</code>.</p>
+      </div>
+      <div>
+        <a href="/pages/manage-claims.html" class="btn btn-secondary btn-sm">← Back to Claims Review</a>
+      </div>
+    </div>
+
+    <!-- Record Handover Card -->
+    <div class="card" style="border-left: 4px solid var(--success);">
+      <div class="card-header">
+        <h3 class="card-title">Execute Item Handover (1-to-1 Transactional Verification)</h3>
+        <span class="badge badge-claimed">MySQL Transaction</span>
+      </div>
+
+      <div id="pending-handovers-alert"></div>
+
+      <form id="record-handover-form">
+        <div class="form-group">
+          <label class="form-label" for="handover-claim-select">
+            Select Verified & Approved Ownership Claim <span class="required">*</span>
+          </label>
+          <select id="handover-claim-select" name="claim_id" class="form-control" required>
+            <option value="">Loading approved claims...</option>
+          </select>
+          <div class="form-text">Only claims marked as APPROVED by administrators are eligible for official handover.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="handover-remarks">Administrative Verification Remarks</label>
+          <textarea id="handover-remarks" name="remarks" class="form-control" rows="2" placeholder="e.g., Physical student ID verified at desk. Item unlocked and handed over in original condition."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="background-color: var(--success); border-color: var(--success);">
+          🤝 Record Handover & Finalize Item as CLAIMED
+        </button>
+      </form>
+    </div>
+
+    <!-- Completed Handovers Table (from View v_handover_details) -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Completed Recovery Audit Trail</h3>
+        <small style="color: var(--slate-500);">Rendered from MySQL View <code>v_handover_details</code></small>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Recovered Item</th>
+              <th>Receiving Student</th>
+              <th>Handed Over By Admin</th>
+              <th>Timestamp</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="completed-handovers-table-body">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 2rem;">Loading completed handovers...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>© 2026 Smart Student Lost & Found Management System • DBMS Capstone</div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
